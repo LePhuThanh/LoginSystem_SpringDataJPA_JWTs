@@ -1,10 +1,7 @@
 package com.lpt.LoginSystem.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -19,10 +16,11 @@ import java.util.Set;
 @Table(name = "users")
 public class ApplicationUser implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Integer userId;
-    private String userName;
+    @Column(unique = true)
+    private String username;
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -45,7 +43,7 @@ public class ApplicationUser implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.userName;
+        return this.username;
     }
 
     @Override

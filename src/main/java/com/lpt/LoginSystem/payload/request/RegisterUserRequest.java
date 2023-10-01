@@ -1,4 +1,4 @@
-package com.lpt.LoginSystem.request;
+package com.lpt.LoginSystem.payload.request;
 
 import lombok.*;
 
